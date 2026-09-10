@@ -1,0 +1,7 @@
+name: parte1_dart
+description: Parte 1 - Dart puro (POO) - Trabalho de Programação para Dispositivos Móveis
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

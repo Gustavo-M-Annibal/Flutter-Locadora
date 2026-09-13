@@ -1,9 +1,7 @@
-import 'filme.dart';
-
 /// Exercício 2 — Herança
 /// Recurso obrigatório: extends — Conceito: super no construtor + @override
-///
-/// Teste "é-um": todo filme legendado é um filme. Cabe herança.
+
+import 'filme.dart';
 class FilmeLegendado extends Filme {
   final String idioma;
   final String estudioDublagem;

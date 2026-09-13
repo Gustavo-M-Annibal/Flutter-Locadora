@@ -1,5 +1,3 @@
-// TODO: Exercício 9 — TextFormField + TextEditingController + dispose().
-
 import 'package:flutter/material.dart';
 import '../models/filme.dart';
 
@@ -29,9 +27,9 @@ class _CadastroPageState extends State<CadastroPage> {
     super.dispose();
   }
 
+
   void _confirmar() {
     final titulo = _tituloController.text;
-    // O controller sempre devolve String — conversão explícita necessária.
     final duracao = int.tryParse(_duracaoController.text) ?? 0;
     final preco = double.tryParse(_precoController.text) ?? 0.0;
 
@@ -48,7 +46,18 @@ class _CadastroPageState extends State<CadastroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cadastrar filme')),
+      backgroundColor: const Color(0xFFF5EFE6),
+      appBar: AppBar(
+        title: const Text('Cadastrar filme'),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF6B1E23),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.5,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -59,8 +68,11 @@ class _CadastroPageState extends State<CadastroPage> {
               controller: _tituloController,
               decoration: const InputDecoration(
                 labelText: 'Título',
-                prefixIcon: Icon(Icons.movie),
+                prefixIcon: Icon(Icons.movie, color: Color(0xFF6B1E23)),
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF6B1E23), width: 2),
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -69,8 +81,11 @@ class _CadastroPageState extends State<CadastroPage> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 labelText: 'Duração (min)',
-                prefixIcon: Icon(Icons.timer),
+                prefixIcon: Icon(Icons.timer, color: Color(0xFF6B1E23)),
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF6B1E23), width: 2),
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -79,13 +94,20 @@ class _CadastroPageState extends State<CadastroPage> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 labelText: 'Preço',
-                prefixIcon: Icon(Icons.attach_money),
+                prefixIcon: Icon(Icons.attach_money, color: Color(0xFF6B1E23)),
                 border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF6B1E23), width: 2),
+                ),
               ),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: _confirmar,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF6B1E23),
+                foregroundColor: Colors.white,
+              ),
               child: const Text('Confirmar'),
             ),
           ],

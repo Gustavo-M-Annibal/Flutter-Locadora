@@ -17,12 +17,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Locadora _locadora = Locadora(nome: 'Locadora Central');
+  final Locadora _locadora = Locadora(nome: '==Locadora Central==');
 
   @override
   void initState() {
     super.initState();
-    // Já entra com 6 itens — sem tela de abertura, sem carregamento.
     _locadora.adicionar(Filme(
       titulo: 'O Poderoso Chefão',
       duracaoMinutos: 175,
@@ -70,8 +69,6 @@ class _HomePageState extends State<HomePage> {
       MaterialPageRoute(
         builder: (context) => CadastroPage(
           aoConfirmar: (novoFilme) {
-            // Alterar a lista FORA do setState não muda nada na tela —
-            // o Flutter só reconstrói quando é avisado.
             setState(() {
               _locadora.adicionar(novoFilme);
             });
@@ -86,15 +83,26 @@ class _HomePageState extends State<HomePage> {
     final filmes = _locadora.filmes;
 
     return Scaffold(
-      // Exercício 5 — Scaffold com AppBar
-      appBar: AppBar(title: const Text('Locadora Central')),
+      backgroundColor: const Color(0xFFF5EFE6),
+      appBar: AppBar(
+        title: const Text('Locadora Central'),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF6B1E23),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.5,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _abrirCadastro,
         tooltip: 'Cadastrar filme',
+        backgroundColor: const Color(0xFF6B1E23),
+        foregroundColor: Colors.white,
         child: const Icon(Icons.add),
       ),
       body: Column(
-        // Exercício 5 — alinhamentos explícitos nos dois eixos
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -102,26 +110,30 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(16),
             child: Text(
               'Duração total: ${_locadora.duracaoTotalMinutos} min',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF6B1E23),
+              ),
             ),
           ),
-          // Exercício 7 — ListView.builder dentro de Expanded (sem isso,
-          // a Column e a ListView brigam pela mesma altura infinita).
           Expanded(
             child: ListView.builder(
               itemCount: filmes.length,
               itemBuilder: (context, index) {
                 final filme = filmes[index];
-                return Cartao(
-                  filme: filme,
-                  onTap: () {
-                    // Exercício 8 — passa o objeto pelo construtor da tela
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => DetalhePage(filme: filme),
-                      ),
-                    );
-                  },
+                return MouseRegion(
+                  cursor: SystemMouseCursors.click, 
+                  child: Cartao(
+                    filme: filme,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => DetalhePage(filme: filme),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),

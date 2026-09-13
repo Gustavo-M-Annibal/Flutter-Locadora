@@ -1,14 +1,12 @@
 // TODO: Exercícios 3 e 4 — composição (List<Filme>) e encapsulamento
 // (atributo privado + getter calculado).
-
-import 'filme.dart';
-
 /// Exercício 3 — Composição
 /// Recurso obrigatório: List<Filme> — "tem um", não "é um".
 ///
 /// Exercício 4 — Encapsulamento
 /// Recurso obrigatório: atributo privado (_filmes) —
 /// Conceito: getter calculado (duracaoTotalMinutos), não campo guardado.
+import 'filme.dart';
 class Locadora {
   final String nome;
   final List<Filme> _filmes = [];

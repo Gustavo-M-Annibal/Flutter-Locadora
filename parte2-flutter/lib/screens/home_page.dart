@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/filme.dart';
 import '../models/filme_legendado.dart';
 import '../models/locadora.dart';
-import 'widgets/cartao.dart';import 'cadastro_page.dart';
+import 'widgets/cartao.dart';
+import 'detalhe_page.dart';
+import 'cadastro_page.dart';
 
 /// Exercício 10 — Estado
 /// StatefulWidget que guarda o objeto agrupador (Locadora) e o atualiza
@@ -111,7 +113,15 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 final filme = filmes[index];
                 return Cartao(
-                  filme: filme,                
+                  filme: filme,
+                  onTap: () {
+                    // Exercício 8 — passa o objeto pelo construtor da tela
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DetalhePage(filme: filme),
+                      ),
+                    );
+                  },
                 );
               },
             ),

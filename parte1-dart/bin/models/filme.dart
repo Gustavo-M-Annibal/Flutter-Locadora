@@ -1,5 +1,5 @@
-// TODO: Exercício 1 — classe principal do domínio.
-// Recurso obrigatório: construtor com parâmetros nomeados + required
+/// Exercício 1 — Entidade principal
+/// Recurso obrigatório: construtor com parâmetros nomeados + required
 class Filme {
   final String titulo;
   final int duracaoMinutos;
@@ -12,4 +12,9 @@ class Filme {
     required this.preco,
     DateTime? dataLancamento,
   }) : dataLancamento = dataLancamento ?? DateTime(2000, 1, 1);
+
+  /// Método que será sobrescrito no exercício 2 (herança).
+  String ficha() {
+    return '$titulo, $duracaoMinutos minutos';
+  }
 }
